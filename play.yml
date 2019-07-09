@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  vars:
+    http_port: 80
+    max_clients: 200
+  tasks:
+  - name: "shell it"
+    shell: "docker run --rm -ti -e MYVAR=\"JJ-KJJ-RRR TTT\" fedora:30 bash -c $'uname -a ; echo \"${MYVAR}\" | awk -F \\x27-\\x27 \\x27{print $NF}\\x27'"
+    register: nene
+
+  - name: "debug"
+    debug:
+      var: nene
