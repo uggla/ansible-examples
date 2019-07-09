@@ -1,4 +1,6 @@
-== Escaping into Bash example ==
+## Escaping into Bash example
+
+Best solution is to use [Ansi C like string](https://wiki.bash-hackers.org/syntax/quoting#ansi_c_like_strings).
 
 ```
 docker run --rm -ti -e MYVAR="JJJJ KKK" fedora:30 bash -c $'echo \"${MYVAR}\" | awk \'{ print $NF }\'; echo \"${MYVAR}\"'
@@ -6,7 +8,9 @@ KKK
 JJJJ KKK
 ```
 
-== Escaping into Ansible example ==
+## Escaping into Ansible example
+
+The Ansible yaml parser seems to not handle \' correctly so use the hex ascii value \\x27.
 ```
  __________________
 < PLAY [localhost] >
